@@ -27,6 +27,9 @@ describe("routes : static", () => {
   describe("/macro", () => {
     it("should return a status code 200 with a body response of polo", (done) => {
       request.get('/macro',(err, res, body) => {
+        console.log(err);
+        console.log(res);
+        console.log(body);
         expect(res.statusCode).toBe(200);
         expect(body).toContain("polo");
         done();
