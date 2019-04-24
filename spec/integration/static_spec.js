@@ -24,17 +24,13 @@ describe("routes : static", () => {
 
   //macro test
 
-  describe("/macro", () => {
+  describe("GET /marco", () => {
     it("should return a status code 200 with a body response of polo", (done) => {
-      request.get('/macro',(err, res, body) => {
-        console.log(err);
-        console.log(res);
-        console.log(body);
+      request.get('/marco',(err, res, body) => {
         expect(res.statusCode).toBe(200);
         expect(body).toContain("polo");
         done();
-      })
-    })
-  })
-
+      });
+    });
+  });
 });
