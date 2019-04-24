@@ -1,7 +1,7 @@
 const express = require("express");
 const macro = express.Router();
 
-router.get("/", (req, res, next) => {
+macro.get("/", (req, res, next) => {
   res.send("polo");
 });
 
