@@ -22,14 +22,14 @@ describe("routes : static", () => {
 
   });
 
-  //macro test
+  // /about test
 
-  describe("GET /marco", () => {
-    it("should return a status code 200 with a body response of polo", (done) => {
-      request.get(`${base}marco`,(err, res, body) => {
+  describe("GET /about", () => {
+    it("should return a status code 200 with a body response of About Us", (done) => {
+      request.get(`${base}about`,(err, res, body) => {
         console.log(res);
         expect(res.statusCode).toBe(200);
-        expect(body).toContain("polo");
+        expect(body).toContain("About Us");
         done();
       });
     });
