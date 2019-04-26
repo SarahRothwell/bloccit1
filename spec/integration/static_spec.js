@@ -27,7 +27,7 @@ describe("routes : static", () => {
   describe("GET /about", () => {
     it("should return a status code 200 with a body response of About Us", (done) => {
       request.get(`${base}about`,(err, res, body) => {
-        console.log(res);
+        //console.log(res);
         expect(res.statusCode).toBe(200);
         expect(body).toContain("About Us");
         done();
