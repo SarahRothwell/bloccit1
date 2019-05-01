@@ -5,6 +5,6 @@ const adController = require("../controllers/adController")
 
 router.get("/advertisements", adController.index);
 router.get("/advertisements", adController.new);
-router.get("/advertisements", adController.create);
+router.post("/advertisements", adController.create);
 
 module.exports = router;
