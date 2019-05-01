@@ -30,8 +30,7 @@ describe ("routes : advertisements", () => {
         request.get(base, (err, res, body) => {
           expect(res.statusCode).toBe(200);
           expect(err).toBeNull();
-          expect(body).toContain("New Advertisement");
-          //expect(body).toContain("Ad text");
+          expect(body).toContain("Advertisements");
           done();
         });
       });
@@ -78,6 +77,18 @@ describe ("routes : advertisements", () => {
         }
       );
     });
+  });
+
+  describe("GET /advertisements/:id", () => {
+
+    it("should render a view with the selected advertisement", (done) => {
+      request.get(`${base}${this.advertisement.id}`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("View an advertisement");
+        done();
+      });
+    });
+
   });
 
 

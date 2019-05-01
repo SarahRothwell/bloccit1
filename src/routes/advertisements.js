@@ -4,7 +4,8 @@ const router = express.Router();
 const adController = require("../controllers/adController")
 
 router.get("/advertisements", adController.index);
-router.get("/advertisements", adController.new);
-router.post("/advertisements", adController.create);
+router.get("/advertisements/new", adController.new);
+router.post("/advertisements/create", adController.create);
+router.get("/advertisements/:id", adController.show);
 
 module.exports = router;

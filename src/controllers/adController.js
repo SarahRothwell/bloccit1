@@ -2,18 +2,14 @@ const adQueries = require("../db/queries.advertisements.js");
 
 module.exports = {
   index(req, res, next){
-     res.send("List of all advertisements");
-
-//#2
      adQueries.getAllAds((err, advertisements) => {
 
-//#3
        if(err){
          res.redirect(500, "static/index");
        } else {
          res.render("advertisements/index", {advertisements});
        }
-     })
+     });
   },
 
   new(req, res, next){
@@ -32,7 +28,18 @@ module.exports = {
          res.redirect(303, `/advertisements/${advertisement.id}`);
        }
      });
-   }
+   },
 
+   show(req, res, next){
+
+     adQueries.getAllAds(req.params.id, (err, topic) => {
+
+       if(err || topic == null){
+         res.redirect(404, "/");
+       } else {
+         res.render("advertisements/show", {advertisement});
+       }
+     });
+   }
 
 }

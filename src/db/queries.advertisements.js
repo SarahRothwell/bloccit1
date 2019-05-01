@@ -16,16 +16,26 @@ module.exports = {
   },
 
   addAd(newAd, callback){
-  return Advertisement.create({
-    title: newAd.title,
-    description: newAd.description
-    })
-  .then((advertisement) => {
-    callback(null, advertisement);
-    })
-  .catch((err) => {
-    callback(err);
-    })
-  }
+    return Advertisement.create({
+      title: newAd.title,
+      description: newAd.description
+      })
+    .then((advertisement) => {
+      callback(null, advertisement);
+      })
+    .catch((err) => {
+      callback(err);
+      })
+    },
+
+    getAd(id, callback){
+      return Advertisement.findById(id)
+      .then((advertisement) => {
+        callback(null, advertisement);
+      })
+      .catch((err) => {
+        callback(err);
+      })
+    }
 
 }
