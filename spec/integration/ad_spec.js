@@ -91,4 +91,30 @@ describe ("routes : advertisements", () => {
 
   });
 
+  describe("POST /advertisements/:id/destroy", () => {
+
+  it("should delete the ad with the associated ID", (done) => {
+
+    Advertisement.all()
+    .then((advertisement) => {
+
+      const adCountBeforeDelete = advertisements.length;
+
+      expect(adCountBeforeDelete).toBe(1);
+
+      request.post(`${base}${this.advertisement.id}/destroy`, (err, res, body) => {
+        Advertisement.all()
+        .then((advertisement) => {
+          expect(err).toBeNull();
+          expect(advertisements.length).toBe(adCountBeforeDelete - 1);
+          done();
+        })
+
+      });
+    });
+
+  });
+
+});
+
   });

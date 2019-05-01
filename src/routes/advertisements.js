@@ -7,5 +7,6 @@ router.get("/advertisements", adController.index);
 router.get("/advertisements/new", adController.new);
 router.post("/advertisements/create", adController.create);
 router.get("/advertisements/:id", adController.show);
+router.post("/advertisements/:id/destroy", adController.destroy);
 
 module.exports = router;

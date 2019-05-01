@@ -32,12 +32,22 @@ module.exports = {
 
    show(req, res, next){
 
-     adQueries.getAllAds(req.params.id, (err, advertisement) => {
+     adQueries.getAd(req.params.id, (err, advertisement) => {
 
        if(err || advertisement == null){
          res.redirect(404, "/");
        } else {
          res.render("advertisements/show", {advertisement});
+       }
+     });
+   },
+
+   destroy(req, res, next){
+     adQueries.deleteAd(req.params.id, (err, advertisement) => {
+       if(err){
+         res.redirect(500, `/advertisements/${advertisement.id}`)
+       } else {
+         res.redirect(303, "/advertisements")
        }
      });
    }

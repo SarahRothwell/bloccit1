@@ -7,9 +7,12 @@
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
-      <h1><%= advertisement.title %></h1>
-
+      <h1>View an advertisement</h1>
+      <h2><%= advertisement.title %></h2>
       <p><%= advertisement.description %></p>
+      <form style="display:initial" action="/advertisements/<%= advertisement.id %>/destroy" method="post">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
