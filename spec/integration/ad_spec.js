@@ -64,7 +64,7 @@ describe ("routes : advertisements", () => {
 //#2
         (err, res, body) => {
           Advertisement.findOne({where: {title: "Ad#1"}})
-          .then((topic) => {
+          .then((advertisement) => {
             expect(res.statusCode).toBe(303);
             expect(advertisement.title).toBe("Ad#1");
             expect(advertisement.description).toBe("Description of Ad#1");
@@ -90,6 +90,5 @@ describe ("routes : advertisements", () => {
     });
 
   });
-
 
   });

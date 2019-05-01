@@ -21,7 +21,7 @@ module.exports = {
        title: req.body.title,
        description: req.body.description
      };
-     adQueries.addAd(newAd, (err, topic) => {
+     adQueries.addAd(newAd, (err, advertisement) => {
        if(err){
          res.redirect(500, "/advertisements/new");
        } else {
@@ -32,9 +32,9 @@ module.exports = {
 
    show(req, res, next){
 
-     adQueries.getAllAds(req.params.id, (err, topic) => {
+     adQueries.getAllAds(req.params.id, (err, advertisement) => {
 
-       if(err || topic == null){
+       if(err || advertisement == null){
          res.redirect(404, "/");
        } else {
          res.render("advertisements/show", {advertisement});
