@@ -96,7 +96,7 @@ describe ("routes : advertisements", () => {
   it("should delete the ad with the associated ID", (done) => {
 
     Advertisement.all()
-    .then((advertisement) => {
+    .then((advertisements) => {
 
       const adCountBeforeDelete = advertisements.length;
 
@@ -104,7 +104,7 @@ describe ("routes : advertisements", () => {
 
       request.post(`${base}${this.advertisement.id}/destroy`, (err, res, body) => {
         Advertisement.all()
-        .then((advertisement) => {
+        .then((advertisements) => {
           expect(err).toBeNull();
           expect(advertisements.length).toBe(adCountBeforeDelete - 1);
           done();
@@ -117,4 +117,43 @@ describe ("routes : advertisements", () => {
 
 });
 
+describe("GET /advertisements/:id/edit", () => {
+
+  it("should render a view with an edit ad form", (done) => {
+    request.get(`${base}${this.advertisement.id}/edit`, (err, res, body) => {
+      expect(err).toBeNull();
+      expect(body).toContain("Edit Advertisement");
+      done();
+      });
+    });
   });
+
+  describe("POST /advertisements/:id/update", () => {
+
+    it("should update the ad with the given values", (done) => {
+       const options = {
+          url: `${base}${this.advertisement.id}/update`,
+          form: {
+            title: "Ad title",
+            description: "Update to ad"
+          }
+        };
+
+        request.post(options,
+          (err, res, body) => {
+
+          expect(err).toBeNull();
+
+          Advertisement.findOne({
+            where: { id: this.advertisement.id }
+          })
+          .then((advertisement) => {
+            expect(advertisement.title).toBe("Ad title");
+            done();
+          });
+        });
+    });
+
+});
+
+});

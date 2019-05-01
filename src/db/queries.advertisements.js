@@ -48,6 +48,28 @@ module.exports = {
       .catch((err) => {
         callback(err);
       })
-    }
+    },
+
+    updateAd(id, updatedAd, callback){
+         return Advertisement.findById(id)
+         .then((advertisement) => {
+           if(!advertisement){
+             return callback("Ad not found");
+           }
+
+    //#1
+           advertisement.update(updatedAd, {
+             fields: Object.keys(updatedAd)
+           })
+           .then(() => {
+             callback(null, advertisement);
+           })
+           .catch((err) => {
+             callback(err);
+           });
+         });
+       }
+
+
 
 }
