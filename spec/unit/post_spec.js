@@ -21,7 +21,6 @@ describe("Post", () => {
         Post.create({
           title: "My first visit to Proxima Centauri b",
           body: "I saw some rocks.",
-//#4
           topicId: this.topic.id
         })
         .then((post) => {
@@ -50,7 +49,6 @@ describe("#create()", () => {
        })
        .then((post) => {
 
-//#2
          expect(post.title).toBe("Pros of Cryosleep during the long journey");
          expect(post.body).toBe("1. Not having to answer the 'are we there yet?' question.");
          done();
