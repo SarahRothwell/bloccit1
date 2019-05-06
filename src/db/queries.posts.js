@@ -46,9 +46,12 @@ module.exports = {
         fields: Object.keys(updatedPost)
       })
       .then(() => {
+        console.log(post);
         callback(null, post);
       })
       .catch((err) => {
+        console.log("error");
+        console.log(err);
         callback(err);
       });
     });
