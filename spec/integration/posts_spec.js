@@ -169,8 +169,7 @@ describe("routes : posts", () => {
            body: "I love watching them melt slowly."
          }
        }, (err, res, body) => {
-         //console.log(body);
-         //console.log(res.statusCode);
+
          expect(res.statusCode).toBe(302);
          done();
        });
@@ -186,11 +185,10 @@ describe("routes : posts", () => {
          };
          request.post(options,
            (err, res, body) => {
-             //console.log(body)
+
 
            expect(err).toBeNull();
-           //console.log("POST DEBUG...");
-           //console.log(this.post);
+
            Post.findOne({
              where: {id: this.post.id}
            })
