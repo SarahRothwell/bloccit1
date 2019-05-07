@@ -38,6 +38,7 @@ describe("admin user performing CRUD actions for Topic", () => {
       role: "admin"
     })
     .then((user) => {
+      //console.log(user)
       request.get({         // mock authentication
         url: "http://localhost:3000/auth/fake",
         form: {
