@@ -16,6 +16,7 @@ describe("routes : topics", () => {
            description: "There is a lot of them"
          })
           .then((topic) => {
+            //console.log(topic);
             this.topic = topic;
             done();
           })
@@ -38,7 +39,7 @@ describe("admin user performing CRUD actions for Topic", () => {
       role: "admin"
     })
     .then((user) => {
-      //console.log(user)
+
       request.get({         // mock authentication
         url: "http://localhost:3000/auth/fake",
         form: {
@@ -202,13 +203,14 @@ describe("admin user performing CRUD actions for Topic", () => {
     //#1
              request.post(options,
                (err, res, body) => {
-
                expect(err).toBeNull();
     //#2
                Topic.findOne({
                  where: { id: this.topic.id }
                })
                .then((topic) => {
+                 console.log('TOPIC title');
+                 console.log(topic.title);
                  expect(topic.title).toBe("JavaScript Frameworks");
                  done();
                });
@@ -232,6 +234,7 @@ describe("member user performing CRUD actions for Topic", () => {
       }
     },
       (err, res, body) => {
+
         done();
       }
     );
@@ -248,8 +251,9 @@ describe("member user performing CRUD actions for Topic", () => {
           done();
       });
     });
+});
 
-    describe("GET /topics/new", () => {
+  describe("GET /topics/new", () => {
 
     it("should render a new topic form", (done) => {
       request.get(`${base}new`, (err, res, body) => {
@@ -259,7 +263,6 @@ describe("member user performing CRUD actions for Topic", () => {
         });
       });
     });
-  });
 
   describe("POST /topics/create", () => {
         const options = {
@@ -273,10 +276,8 @@ describe("member user performing CRUD actions for Topic", () => {
         it("should create a new topic and redirect", (done) => {
 
   //#1
-          request.post(options,
+          request.post(options, (err, res, body) => {
 
-  //#2
-            (err, res, body) => {
               Topic.findOne({where: {title: "blink-182 songs"}})
               .then((topic) => {
                 expect(res.statusCode).toBe(303);

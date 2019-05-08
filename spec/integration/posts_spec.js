@@ -70,9 +70,12 @@ describe("routes : posts", () => {
         };
         request.post(options,
           (err, res, body) => {
-
+            console.log('error');
+            console.log(err);
             Post.findOne({where: {title: "Watching snow melt"}})
             .then((post) => {
+              console.log('POST');
+              console.log(post);
               expect(post).not.toBeNull();
               expect(post.title).toBe("Watching snow melt");
               expect(post.body).toBe("Without a doubt my favoriting things to do besides watching paint dry!");
