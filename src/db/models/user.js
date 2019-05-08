@@ -31,5 +31,9 @@ module.exports = (sequelize, DataTypes) => {
      return this.role === "admin";
    };
 
+   User.prototype.isOwner = function() {
+     return this.role === post.userId;
+   };
+
   return User;
 };
