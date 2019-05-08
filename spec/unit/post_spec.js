@@ -76,11 +76,6 @@ describe("#create()", () => {
          title: "Pros of Cryosleep during the long journey"
        })
        .then((post) => {
-
-        // the code in this block will not be evaluated since the validation error
-        // will skip it. Instead, we'll catch the error in the catch block below
-        // and set the expectations there
-
          done();
 
        })
