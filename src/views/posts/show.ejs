@@ -9,13 +9,15 @@
     <main class="container">
 
       <% include ../static/partials/messages.ejs %>
-
+      <h1>iqeurguqer</h2>
       <h1><%= post.title %></h1>
         <% if(currentUser) { %>
-        <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/edit" class="btn btn-warning">Edit</a>
-        <form style="display:initial" action="/topics/<%= post.topicId %>/posts/<%= post.id %>/destroy" method="post">
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+          <% console.log(JSON.stringify(currentUser.isOwner())) %>
+          <% console.log(JSON.stringify(currentUser.isAdmin())) %>
+          <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/edit" class="btn btn-warning">Edit</a>
+          <form style="display:initial" action="/topics/<%= post.topicId %>/posts/<%= post.id %>/destroy" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
         <% } %>
       <p><%= post.body %></p>
     </main>

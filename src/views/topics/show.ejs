@@ -13,6 +13,7 @@
       <h1><%= topic.title %></h1>
 
       <% if(currentUser) { %>
+        
         <a href="/topics/<%= topic.id %>/posts/new" class="btn btn-success">New Post</a>
         <% if(currentUser.isAdmin()) { %>
           <a href="/topics/<%= topic.id %>/edit" class="btn btn-warning">Edit</a>

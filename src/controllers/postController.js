@@ -60,6 +60,7 @@ module.exports = {
 
     edit(req, res, next){
       postQueries.getPost(req.params.id, (err, post) => {
+        console.log(req.params.id);
         if(err || post == null){
           res.redirect(404, "/");
         } else {
