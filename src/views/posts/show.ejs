@@ -20,6 +20,17 @@
           <% } %>
         <% } %>
       <p><%= post.body %></p>
+      <% if(currentUser) { %>
+          <% include ../comments/new.ejs %>
+        <% } %>
+        </section>
+        <section id="comment-list">
+        <% if(post.comments) { %>
+          <% post.comments.forEach((comment) => { %>
+            <%- include("../comments/show.ejs", {comment}) %>
+          <% }) %>
+        <% } %>
+        </section>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
