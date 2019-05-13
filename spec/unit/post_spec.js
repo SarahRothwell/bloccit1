@@ -198,9 +198,31 @@ describe("#create()", () => {
          console.log(err);
          done();
        });
-       //it
-     });
 
+     });
+   });
+
+   describe("#hasDownvoteFor()", () => {
+
+     it("should return true when user downvoted a post", (done) => {
+
+       Vote.create({
+         value: -1,
+         userId: this.user.id,
+         postId: this.post.id
+       })
+       .then((vote) => {
+         this.post.hasDownvoteFor(this.user.id, (res) => {
+           expect(res).toBeTruthy();
+           done();
+         })
+       })
+       .catch((err) => {
+         console.log(err);
+         done();
+       });
+
+     });
    });
 
 });
