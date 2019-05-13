@@ -48,8 +48,15 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "postId",
       as: "favorites"
     });
-  };
 
+
+  Post.afterCreate((post, callback) => {
+    return models.Favorite.create({
+      userId: post.userId,
+      postId: post.id
+    });
+  });
+};
 //keep count of all votes that a post has
 Post.prototype.getPoints = function(){
   if(!this.votes || this.votes.length === 0) return 0
