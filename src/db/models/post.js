@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {});
+
   Post.associate = function(models) {
 
     Post.belongsTo(models.Topic, {
@@ -56,6 +57,15 @@ module.exports = (sequelize, DataTypes) => {
       postId: post.id
     });
   });
+
+  Post.afterCreate((pst, callback) => {
+    return models.Vote.create({
+      userId: post.userId,
+      postId: post.id,
+      value: 1
+    });
+  });
+
 };
 //keep count of all votes that a post has
 Post.prototype.getPoints = function(){
