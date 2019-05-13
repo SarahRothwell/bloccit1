@@ -43,6 +43,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "postId",
       as: "votes"
     });
+
+    Post.hasMany(models.Favorite, {
+      foreignKey: "postId",
+      as: "favorites"
+    });
   };
 
 //keep count of all votes that a post has
@@ -51,6 +56,10 @@ Post.prototype.getPoints = function(){
   return this.votes
     .map((v) => { return v.value })
     .reduce((prev, next) => { return prev + next });
+};
+
+Post.prototype.getFavoriteFor = function(userId){
+  return this.favorites.find((favorite) => { return favorite.userId == userId });
 };
 
 Post.prototype.hasUpvoteFor = function(userId, callback){
