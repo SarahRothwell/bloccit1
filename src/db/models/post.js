@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {});
+
   Post.associate = function(models) {
 
     Post.belongsTo(models.Topic, {
@@ -43,14 +44,39 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "postId",
       as: "votes"
     });
-  };
 
+    Post.hasMany(models.Favorite, {
+      foreignKey: "postId",
+      as: "favorites"
+    });
+
+
+  Post.afterCreate((post, callback) => {
+    return models.Favorite.create({
+      userId: post.userId,
+      postId: post.id
+    });
+  });
+
+  Post.afterCreate((pst, callback) => {
+    return models.Vote.create({
+      userId: post.userId,
+      postId: post.id,
+      value: 1
+    });
+  });
+
+};
 //keep count of all votes that a post has
 Post.prototype.getPoints = function(){
   if(!this.votes || this.votes.length === 0) return 0
   return this.votes
     .map((v) => { return v.value })
     .reduce((prev, next) => { return prev + next });
+};
+
+Post.prototype.getFavoriteFor = function(userId){
+  return this.favorites.find((favorite) => { return favorite.userId == userId });
 };
 
 Post.prototype.hasUpvoteFor = function(userId, callback){

@@ -19,6 +19,9 @@
           </form>
           <% } %>
         <% } %>
+        <% if(currentUser) { %>
+          <% include ../favorites/favoriting.ejs %>
+        <% } %>
       <p><%= post.body %></p>
       <div style="display: flex; align-items:center;">
           <% if(currentUser) { %>
