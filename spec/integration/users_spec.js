@@ -5,6 +5,7 @@ const User = require("../../src/db/models").User;
 const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
 const Comment = require("../../src/db/models").Comment;
+const Favorites = require("../../src/db/models").Favorite;
 const sequelize = require("../../src/db/models/index").sequelize;
 
 describe("routes : users", () => {
