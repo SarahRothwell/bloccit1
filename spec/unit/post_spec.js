@@ -2,6 +2,7 @@ const sequelize = require("../../src/db/models/index").sequelize;
 const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
 const User = require("../../src/db/models").User;
+const Vote = require("../../src/db/models").Vote;
 
 describe("Post", () => {
 
@@ -9,6 +10,7 @@ describe("Post", () => {
     this.topic;
     this.post;
     this.user;
+    this.vote;
 
     sequelize.sync({force: true}).then((res) => {
 
@@ -130,6 +132,15 @@ describe("#create()", () => {
 
   });
 
+  describe("#getPoints()", () => {
+
+    it("should return the total # of votes of a post", (done) => {
+      let total = this.post.getPoints();
+      expect(total).toBe(0);
+      done();
+    });
+  });
+
   describe("#setUser()", () => {
 
      it("should associate a post and a user together", (done) => {
@@ -164,6 +175,29 @@ describe("#create()", () => {
          done();
        });
 
+     });
+
+   });
+
+   describe("#hasUpvoteFor()", () => {
+
+     it("should return true when user upvoted a post", (done) => {
+
+       Vote.create({
+         value: 1,
+         userId: this.user.id,
+         postId: this.post.id
+       })
+       .then((vote) => {
+         //console.log(vote);
+         let userUpvote = this.post.hasUpvoteFor(this.user.id);
+         expect(userUpvote).toBe(true);
+         done();
+       })
+       .catch((err) => {
+         console.log(err);
+         done();
+       });
      });
 
    });

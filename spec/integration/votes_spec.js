@@ -95,7 +95,6 @@ describe("guest attempting to vote on a post", () => {
         }
       );
     });
-
   });
 });
 
@@ -130,7 +129,8 @@ describe("signed in user voting on a post", () => {
               postId: this.post.id
             }
           })
-          .then((vote) => {               // confirm that an upvote was created
+          .then((vote) => {
+                          // confirm that an upvote was created
             expect(vote).not.toBeNull();
             expect(vote.value).toBe(1);
             expect(vote.userId).toBe(this.user.id);
@@ -144,8 +144,42 @@ describe("signed in user voting on a post", () => {
         }
       );
     });
-  });
 
+    it("should not create more than on upvote per userId on a post", (done) => {
+      const options = {
+        url: `${base}${this.topic.id}/posts/${this.post.id}/votes/upvote`
+      };
+      request.get(options,
+        (err, res, body) => {
+          Vote.findOne({
+            where: {
+              userId: this.user.id,
+              postId: this.post.id
+            }
+          })
+          .then((vote) => {
+            request.get(options,
+            (err, res, body) => {
+              Vote.findAll({
+                where: {
+                  userId: this.user.id,
+                  postId: this.post.id
+                }
+              })
+              .then((vote) => {
+                expect(vote.length).toBe(1);
+                done()
+              })
+            })
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+            });
+          }
+        );
+      });
+    });
   describe("GET /topics/:topicId/posts/:postId/votes/downvote", () => {
 
     it("should create a downvote", (done) => {

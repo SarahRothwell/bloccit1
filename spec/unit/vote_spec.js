@@ -105,6 +105,22 @@ describe("Vote", () => {
        });
      });
 
+     it("should create a vote on a post for a user that is not -1 or 1", (done) => {
+       Vote.create({
+         value: 2,
+         postId: this.post.id,
+         userId: this.user.id
+       })
+       .then((vote) => {
+         done();
+       })
+       .catch((err) => {
+         //console.log(err.message);
+         expect(err.message).toContain("Validation isIn on value failed");
+         done();
+       });
+     });
+
      it("should not create a vote without assigned post or user", (done) => {
        Vote.create({
          value: 1
@@ -248,6 +264,8 @@ describe("Vote", () => {
        });
 
      });
+
+
 
 //end describe
 });
