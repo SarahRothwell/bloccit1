@@ -55,33 +55,20 @@ Post.prototype.getPoints = function(){
 
 Post.prototype.hasUpvoteFor = function(userId, callback){
 
-  //if(!this.votes || this.votes.length === 0) return false;
-  return this.votes
-    .filter((v) => {return v.userId == userId && v.value == 1})
+  return this.getVotes({
+    where: {
+      userId: userId,
+      postId: this.id,
+      value: 1
+    }
+  })
     .then((v) => {
-      if (votes.length != 0){
+      if (v.length != 0){
         callback(true);
       } else {
         callback(false);
       }
     })
-
-
-/*
-  return this.votes.filter((v) => {
-    if(v.userId == userId && v.value ==1) {
-      return true;
-    };
-  });
-
-/*
-    let findVote = this.votes.filter((vote) => {return vote.value == 1 && vote.userId == userId});
-    if (!findVote.length){
-      return callback (false);
-    } else {
-      return callback (true);
-    };
-*/
 };
 
   Post.prototype.hasDownvoteFor = function(){

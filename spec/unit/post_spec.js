@@ -189,15 +189,16 @@ describe("#create()", () => {
          postId: this.post.id
        })
        .then((vote) => {
-         //console.log(vote);
-         let userUpvote = this.post.hasUpvoteFor(this.user.id);
-         expect(userUpvote).toBe(true);
-         done();
+         this.post.hasUpvoteFor(this.user.id, (res) => {
+           expect(res).toBeTruthy();
+           done();
+         })
        })
        .catch((err) => {
          console.log(err);
          done();
        });
+       //it
      });
 
    });
