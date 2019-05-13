@@ -85,6 +85,7 @@ describe("guest attempting to vote on a post", () => {
             }
           })
           .then((vote) => {
+            console.log(vote);
             expect(vote).toBeNull();
             done();
           })

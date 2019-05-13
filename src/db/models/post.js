@@ -58,14 +58,15 @@ module.exports = (sequelize, DataTypes) => {
     });
   });
 
-  Post.afterCreate((pst, callback) => {
+/*
+  Post.afterCreate((post, callback) => {
     return models.Vote.create({
       userId: post.userId,
       postId: post.id,
       value: 1
     });
   });
-
+*/
 };
 //keep count of all votes that a post has
 Post.prototype.getPoints = function(){
@@ -114,6 +115,15 @@ Post.prototype.hasDownvoteFor = function(userId, callback){
       }
     })
 };
+
+Post.addScope("lastFiveFor", (userId) => {
+
+  return {
+    where: { userId: userId},
+    limit: 5,
+    order: [["createdAt", "DESC"]]
+  }
+});
 
 
   return Post;
