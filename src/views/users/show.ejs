@@ -36,22 +36,22 @@
 
       <h2> Latest Comments</h2>
 
-      <ul class="list-unstyled">
+            <ul class="list-unstyled">
 
- <!-- #4 -->
-        <% if(comments) { %>
-          <% comments.forEach((comment) => { %>
- <!-- #5 -->
-            <li>
-              <span>Post: </span><a href="/topics/<%= comment.Post.topicId %>/posts/<%= comment.Post.id %>">
-                <%= comment.Post.title %>
-              </a>
-              <p>Comment: <%= comment.body %></p>
-            </li>
-            <hr>
-          <% }) %>
-        <% } %>
-      </ul>
+              <% if(comments) { %>
+                <% comments.forEach((comment) => { %>
+
+                  <li>
+                    <span>Post: </span><a href="/topics/<%= comment.Post.topicId %>/posts/<%= comment.Post.id %>">
+                      <%= comment.Post.title %>
+                    </a>
+                    <p>Comment: <%= comment.body %></p>
+                  </li>
+                  <hr>
+                <% }) %>
+              <% } %>
+            </ul>
+
       <h2> Latest Favorites</h2>
 
       <ul class="list-unstyled">
@@ -59,10 +59,9 @@
         <% if(favorites) { %>
           <% favorites.forEach((favorite) => { %>
             <li>
-              <span>Post: </span><a href="/topics/<%= favorite.Post.topicId %>/posts/<%= favorite.Post.id %>">
-                <%= favorites.Post.title %>
+              <span>Post: </span><a href="/topics/<%= favorite.postId %>/posts/<%= favorite.Post.id %>">
+                <%= favorite.Post.title %>
               </a>
-              <p>favorites: <%= comment.body %></p>
             </li>
             <hr>
           <% }) %>
