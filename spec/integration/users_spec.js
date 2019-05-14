@@ -113,6 +113,7 @@ describe("routes : users", () => {
        this.user;
        this.post;
        this.comment;
+       this.favorite;
 
        User.create({
          email: "starman@tesla.com",

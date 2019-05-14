@@ -41,7 +41,6 @@
  <!-- #4 -->
         <% if(comments) { %>
           <% comments.forEach((comment) => { %>
-
  <!-- #5 -->
             <li>
               <span>Post: </span><a href="/topics/<%= comment.Post.topicId %>/posts/<%= comment.Post.id %>">
@@ -59,11 +58,11 @@
 
         <% if(favorites) { %>
           <% favorites.forEach((favorite) => { %>
-
             <li>
               <span>Post: </span><a href="/topics/<%= favorite.Post.topicId %>/posts/<%= favorite.Post.id %>">
                 <%= favorites.Post.title %>
               </a>
+              <p>favorites: <%= comment.body %></p>
             </li>
             <hr>
           <% }) %>

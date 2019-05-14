@@ -38,6 +38,7 @@ module.exports = {
           result["user"] = user;
           Post.scope({method: ["lastFiveFor", id]}).all()
           .then((posts) => {
+
             result["posts"] = posts;
 
             Comment.scope({method: ["lastFiveFor", id]}).all()
@@ -47,6 +48,7 @@ module.exports = {
             })
               Favorite.scope({method: ["listFavoritePosts", id]}).all()
               .then((favorites) => {
+                console.log(favorites);
                 results["favorites"] = favorites;
                 callback(null, result);
               })
