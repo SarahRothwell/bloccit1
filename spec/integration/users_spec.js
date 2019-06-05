@@ -136,6 +136,7 @@ describe("routes : users", () => {
            }
          })
          .then((res) => {
+           //console.log(res);
            this.post = res.posts[0];
 
            Comment.create({
@@ -144,7 +145,6 @@ describe("routes : users", () => {
              userId: this.user.id
            })
            .then((res) => {
-             //console.log(res);
              this.comment = res;
              done();
            })
@@ -155,13 +155,14 @@ describe("routes : users", () => {
 
  // #4
      it("should present a list of comments and posts a user has created", (done) => {
-       request.get(`${base}${this.user.id}`, (err, res, body) => {
-         console.log("Test.......")
-         console.log(`${base}${this.user.id}`);
-         console.log("ERROR.....")
-         console.log(err);
-         console.log("BODY.....")
-         console.log(body);
+      // console.log(`${base}${this.user.id}`);
+       request.get(`${base}${1}`, (err, res, body) => {
+         //console.log("Test.......")
+         //console.log(`${base}${this.user.id}`);
+         //console.log("ERROR.....")
+         //console.log(err);
+         //console.log("BODY.....")
+         //console.log(body);
          expect(body).toContain("Snowball Fighting");
          expect(body).toContain("This comment is alright.")
          done();
