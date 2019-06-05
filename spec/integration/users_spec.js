@@ -148,7 +148,7 @@ describe("routes : users", () => {
              userId: this.user.id
            })
            .then((res) => {
-          //  console.log(res);
+            console.log(res);
              this.comment = res;
              done();
            })
@@ -167,7 +167,7 @@ describe("routes : users", () => {
          //console.log("ERROR.....")
          //console.log(err);
          //console.log("BODY.....")
-        console.log(body);
+        //console.log(body);
         // expect(body).toContain("Snowball Fighting");
          expect(body).toContain("This comment is alright.")
          done();
