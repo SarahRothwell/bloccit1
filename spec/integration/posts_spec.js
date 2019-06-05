@@ -90,7 +90,7 @@ describe("guest user performing CRUD actions for Post", () => {
                 done();
               })
               .catch((err) => {
-                console.log(err);
+                //console.log(err);
                 done();
               });
             }
@@ -221,8 +221,7 @@ describe("admin user performing CRUD actions for Post", () => {
         };
         request.post(options,
           (err, res, body) => {
-            console.log('error');
-            console.log(err);
+          
             Post.findOne({where: {title: "Watching snow melt"}})
             .then((post) => {
               expect(post).not.toBeNull();
@@ -232,7 +231,7 @@ describe("admin user performing CRUD actions for Post", () => {
               done();
             })
             .catch((err) => {
-              console.log(err);
+            //  console.log(err);
               done();
             });
           }
@@ -260,7 +259,7 @@ describe("admin user performing CRUD actions for Post", () => {
                      done();
                  })
                  .catch((err) => {
-                   console.log(err);
+                //   console.log(err);
                    done();
                  });
                }
@@ -405,8 +404,7 @@ describe("member user performing CRUD actions for Post", () => {
         };
         request.post(options,
           (err, res, body) => {
-            console.log('error');
-            console.log(err);
+
             Post.findOne({where: {title: "Watching snow melt"}})
             .then((post) => {
               expect(post).not.toBeNull();

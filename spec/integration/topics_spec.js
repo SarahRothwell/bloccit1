@@ -21,7 +21,7 @@ describe("routes : topics", () => {
             done();
           })
           .catch((err) => {
-            console.log(err);
+            //console.log(err);
             done();
           });
 
@@ -84,48 +84,21 @@ describe("admin user performing CRUD actions for Topic", () => {
         const options = {
           url: `${base}create`,
           form: {
-            title: "blink-182 songs",
-            description: "What's your favorite blink-182 song?"
+            title: "This song title",
+            description: "What is your favorite blink-182 song?"
           }
-        };
+        }
 
         it("should create a new topic and redirect", (done) => {
-
-  //#1
           request.post(options,
-
-  //#2
             (err, res, body) => {
-              Topic.findOne({where: {title: "blink-182 songs"}})
+              Topic.findOne({where: {title: "This song title"}})
               .then((topic) => {
+                //console.log(topic);
                 expect(res.statusCode).toBe(303);
-                expect(topic.title).toBe("blink-182 songs");
-                expect(topic.description).toBe("What's your favorite blink-182 song?");
+                expect(topic.title).toBe("This song title");
+                expect(topic.description).toBe("What is your favorite blink-182 song?");
                 done();
-              })
-              .catch((err) => {
-                console.log(err);
-                done();
-              });
-            }
-          );
-        });
-
-        it("should not create a new topic that fails validations", (done) => {
-          const options = {
-            url: `${base}create`,
-            form: {
-              title: "a",
-              description: "b"
-            }
-          };
-
-          request.post(options,
-            (err, res, body) => {
-              Topic.findOne({where: {title: "a"}})
-              .then((topic) => {
-                  expect(topic).toBeNull();
-                  done();
               })
               .catch((err) => {
                 console.log(err);
@@ -288,7 +261,7 @@ beforeEach((done) => {
               done();
             })
             .catch((err) => {
-              console.log(err);
+              //console.log(err);
               done();
             });
           }

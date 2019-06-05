@@ -44,7 +44,7 @@ describe("routes : votes", () => {
           done();
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
           done();
         });
       });
@@ -174,7 +174,7 @@ describe("signed in user voting on a post", () => {
             })
           })
           .catch((err) => {
-            console.log(err);
+          //  console.log(err);
             done();
             });
           }
@@ -203,7 +203,7 @@ describe("signed in user voting on a post", () => {
             done();
           })
           .catch((err) => {
-            console.log(err);
+          //  console.log(err);
             done();
           });
         }
