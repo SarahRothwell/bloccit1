@@ -53,20 +53,20 @@
             </ul>
 
       <h2> Latest Favorites</h2>
-
-      <ul class="list-unstyled">
+        <ul class="list-unstyled">
 
         <% if(favorites) { %>
-          <% favorites.forEach((favorite) => { %>
-            <li>
-              <span>Post: </span><a href="/topics/<%= favorite.postId %>/posts/<%= favorite.Post.id %>">
-                <%= favorite.Post.title %>
-              </a>
-            </li>
-            <hr>
-          <% }) %>
+        <% favorites.forEach((favorite) => { %>
+          <li>
+            <span>Post: </span><a href="/topics/<%= favorite.postId %>/posts/<%= favorite.Post.id %>">
+              <%= favorite.Post.title %>
+            </a>
+          </li>
+          <hr>
+        <% }) %>
         <% } %>
-      </ul>
+    </ul>
+
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>

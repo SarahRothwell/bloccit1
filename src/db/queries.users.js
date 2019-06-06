@@ -35,28 +35,28 @@ module.exports = {
         if(!user) {
           callback(404);
         } else {
-          result["user"] = user;
-          Post.scope({method: ["lastFiveFor", id]}).all()
-          .then((posts) => {
 
+          result["user"] = user;
+
+          Post.scope({method: ["lastFiveFor", id]}).findAll()
+          .then((posts) => {
             result["posts"] = posts;
 
-            Comment.scope({method: ["lastFiveFor", id]}).all()
+            Comment.scope({method: ["lastFiveFor", id]}).findAll()
             .then((comments) => {
               result["comments"] = comments;
-              //callback(null, result);
-            })
-              Favorite.scope({method: ["listFavoritePosts", id]}).all()
-              .then((favorites) => {
-                result["favorites"] = favorites;
-                callback(null, result);
+
+            Favorite.scope({method: ["FavoritesForPost", id]}).findAll()
+            .then((favorites) => {
+              result["favorites"] = favorites;
+              callback(null, result);
               })
+            })
             .catch((err) => {
               callback(err);
             })
-          })
-        }
-      })
-    }
-
+        })
+      }
+    })
+  }
 }

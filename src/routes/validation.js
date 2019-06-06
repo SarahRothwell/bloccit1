@@ -4,7 +4,7 @@ module.exports = {
 //#1
     if(req.method === "POST") {
 
-//#2
+
       req.checkParams("topicId", "must be valid").notEmpty().isInt();
       req.checkBody("title", "must be at least 2 characters in length").isLength({min: 2});
       req.checkBody("body", "must be at least 10 characters in length").isLength({min: 10});
@@ -27,10 +27,10 @@ module.exports = {
     if(req.method === "POST") {
     //  console.log("req.body.title.........")
     //  console.log(req.body.title)
-    //  console.log("req.body.title.length.............");
-    //  console.log(req.body.title.length);
-    // console.log("req.body.description.........")
-    //  console.log(req.body.description);
+  //    console.log("req.body.title.length.............");
+  //    console.log(req.body.title.length);
+  //   console.log("req.body.description.........")
+  //    console.log(req.body.description);
     //  console.log("req.body.description.length.........");
     //  console.log(req.body.description.length);
       req.checkBody("title", "must be at least 5 characters in length").isLength({min: 5});
@@ -68,7 +68,7 @@ module.exports = {
 
   validateComments(req, res, next) {
     if(req.method === "POST") {
-      req.checkBody("body", "must not be empty"). notEmpty();
+      req.checkBody("body", "must not be empty").notEmpty();
     }
 
     const errors = req.validationErrors();

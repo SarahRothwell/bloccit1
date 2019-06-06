@@ -11,9 +11,10 @@
       <% include ../static/partials/messages.ejs %>
 
       <h1><%= topic.title %></h1>
+      <p><%= topic.description %></p>
 
       <% if(currentUser) { %>
-        
+
         <a href="/topics/<%= topic.id %>/posts/new" class="btn btn-success">New Post</a>
         <% if(currentUser.isAdmin()) { %>
           <a href="/topics/<%= topic.id %>/edit" class="btn btn-warning">Edit</a>
@@ -22,7 +23,7 @@
           </form>
         <% } %>
       <% } %>
-      <p><%= topic.description %></p>
+
       <hr>
 
       <h1>Posts</h1>

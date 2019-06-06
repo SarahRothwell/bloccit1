@@ -5,7 +5,8 @@ module.exports = {
   create(req, res, next){
 
     const authorized = new Authorizer(req.user).create();
-
+    //console.log("authorized to create comment in comment controller...............")
+  //  console.log(authorized);
     if(authorized) {
 
       let newComment = {
@@ -23,12 +24,14 @@ module.exports = {
       });
     } else {
       req.flash("notice", "You must be signed in to do that.")
-      req.redirect("/users/sign_in");
+      res.redirect("/users/sign_in");
     }
   },
 
   destroy(req, res, next){
+
     commentQueries.deleteComment(req, (err, comment) => {
+
       if(err){
         res.redirect(err, req.headers.referer);
       } else {
