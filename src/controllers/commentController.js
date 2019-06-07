@@ -31,10 +31,14 @@ module.exports = {
   destroy(req, res, next){
 
     commentQueries.deleteComment(req, (err, comment) => {
-
+    //  console.log("comment query deleteComment activated")
       if(err){
+        //console.log("req.headers.referer if err...........");
+      //  console.log(req.headers.referer);
         res.redirect(err, req.headers.referer);
       } else {
+      //  console.log("req.headers.referer without err...........");
+      //  console.log(req.headers.referer);
         res.redirect(req.headers.referer);
       }
     });

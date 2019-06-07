@@ -28,6 +28,8 @@ module.exports = {
       ]
     })
     .then((post) => {
+    //  console.log("getPost() query activatived..............................")
+    //  console.log(post.comments);
       callback(null, post);
     })
     .catch((err) => {

@@ -26,6 +26,8 @@ module.exports = {
     //  console.log(authorized);
       if(authorized){
         comment.destroy();
+        console.log("If authorized destory comment output.................")
+        console.log(comment);
         callback(null, comment);
       } else {
         req.flash("notice", "You are not authorized to do that.")
